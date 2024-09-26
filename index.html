@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kép és Mozgás</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="toggle-container">
+        <span class="toggle-label"> Movements </span>
+        <label class="switch">
+          <input type="checkbox" id="toggle-switch" />
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-label"> Cube </span>
+        <span class="info-icon" id="info-icon">ℹ️</span>
+        <!-- Információs ikon -->
+      </div>
+      <img id="rules-image" src="img/Rules.png" alt="Position Image" />
+      <div id="rules-container" class="rules-container" style="display: none">
+        <button id="close-rules" class="close-button">x</button>
+        <!-- Bezáró gomb -->
+        <h2>Spatial Orientation III module.</h2>
+        <p>
+          In this module your task is to imagine the rotation of a cube. You'll
+          be given a cube with one side marked (initial position) then you will
+          hear several instructions on how to rotate the cube. You'll need to
+          determine the final position of the mark based on audio recordings.
+        </p>
+        <p>
+          <b>Keep the following information in mind:</b> <br />
+          - The cube can only be pivoted around two of its axis, the vertical
+          and the lateral axis.<br />
+          - The cube's position may be top, left, right, front, behind and
+          bottom.<br />
+          - The instructions you'll hear will involve moving the cube up, down,
+          left or right.
+        </p>
+        <br /><br /><br /><br />
+      </div>
+
+      <img id="current-image" src="img/Main.png" alt="Position Image" />
+      <div id="position-buttons">
+        <!-- Itt lesznek a pozíció gombok -->
+      </div>
+      <button id="new-game">Új játék</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
