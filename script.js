@@ -25,7 +25,7 @@ const transitions = {
     right: "Right-position",
     left: "Left-position",
     up: "Bottom-position",
-    down: "Bottom-position",
+    down: "Top-position",
   },
   "Bottom-position": {
     right: "Bottom-position",
@@ -43,7 +43,7 @@ const transitions = {
     right: "Top-position",
     left: "Top-position",
     up: "Back-position",
-    down: "Bottom-position",
+    down: "Front-position",
   },
   "Left-position": {
     right: "Back-position",
