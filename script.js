@@ -86,17 +86,59 @@ function createPositionButtons() {
 
 // Új játék gomb eseménye
 document.getElementById("new-game").addEventListener("click", () => {
+  resetCubeFaces(); // Előző játékból megmaradt színek visszaállítása
   currentPosition = positions[Math.floor(Math.random() * positions.length)];
   playSound(currentPosition);
   document.getElementById("current-image").src = images[currentPosition];
   isGameOver = false;
   resetButtonColors();
 
+  console.log("Kezdő pozicio:" + currentPosition);
+  resetCube();
+  // Az aktuális pozíció alapján színezzük a kocka megfelelő oldalát
+  colorCubeFace(currentPosition);
+
   setTimeout(() => {
     let moves = generateMoves();
     playMoves(moves);
   }, 2000);
 });
+
+// A kocka oldalak színezésének alaphelyzetbe állítása
+function resetCubeFaces() {
+  const faces = document.querySelectorAll(".cube .face");
+  faces.forEach((face) => {
+    face.style.backgroundColor = "transparent"; // Visszaállítás átlátszóra
+  });
+}
+
+// A kocka megfelelő oldalának zöldre színezése
+function colorCubeFace(position) {
+  let faceClass = ""; // Eltároljuk az oldal osztályát
+
+  switch (position) {
+    case "Front-position":
+      faceClass = "front";
+      break;
+    case "Back-position":
+      faceClass = "back";
+      break;
+    case "Left-position":
+      faceClass = "left";
+      break;
+    case "Right-position":
+      faceClass = "right";
+      break;
+    case "Top-position":
+      faceClass = "top";
+      break;
+    case "Bottom-position":
+      faceClass = "bottom";
+      break;
+  }
+
+  updateGreenSide();
+}
 
 // Hang lejátszása
 function playSound(position) {
@@ -118,19 +160,87 @@ function generateMoves() {
 function playMoves(moves) {
   let delay = 0;
 
-  moves.forEach((move) => {
+  moves.forEach((move, index) => {
     setTimeout(() => {
-      playSound(move);
+      playSound(move); // Jelenlegi hang lejátszása
+
+      // Forgatás az irány alapján
+      if (move === "right") {
+        rotateY -= 90; // Right mozgás (Y tengely visszafelé forgatás)
+      } else if (move === "left") {
+        rotateY += 90; // Left mozgás (Y tengely előrefelé forgatás)
+      } else if (move === "up") {
+        rotateZ += 90; // Up mozgás (Z tengely előrefelé forgatás)
+      } else if (move === "down") {
+        rotateZ -= 90; // Down mozgás (Z tengely visszafelé forgatás)
+      }
+
+      updateCubeTransform(); // Kocka frissítése az új forgatási értékek alapján
+
+      // Új pozíció beállítása a mozgás alapján
       currentPosition = transitions[currentPosition][move];
-      document.getElementById("current-image").src = images[currentPosition];
+      console.log(move);
+      console.log(currentPosition);
+      // Ha ez nem az utolsó mozgás, resetelés
+      if (index < moves.length - 1) {
+        setTimeout(() => {
+          resetCube(); // Kocka visszaállítása alaphelyzetbe
+        }, 400); // Rövid késleltetés a reset előtt, hogy a mozgás befejeződjön
+      }
     }, delay);
-    delay += 800;
+    delay += 800; // Késleltetés minden mozgás között
   });
 
-  // Várakozás a mozgások végéig
+  // Az utolsó mozgás után nincs reset, a kocka marad az új állapotban
   setTimeout(() => {
     isGameOver = true;
   }, delay);
+}
+
+// Kocka visszaállítása alaphelyzetbe (reset)
+function resetCube() {
+  rotateX = -20;
+  rotateY = 70;
+  rotateZ = 0;
+  document.querySelector(".cube").style.transition = "none"; // Animáció kikapcsolása a reset során
+  updateCubeTransform(); // Kocka visszaállítása az alaphelyzetbe
+
+  setTimeout(() => {
+    document.querySelector(".cube").style.transition = ""; // Animáció visszaállítása
+  }, 50); // Rövid idő múlva visszakapcsoljuk az animációt
+  console.log("reset Cube");
+  updateGreenSide();
+}
+
+// Zöld szín visszaállítása a jelenlegi oldalra a currentPosition alapján
+function updateGreenSide() {
+  // Az oldalakhoz rendeljük a zöld színt a currentPosition értéke alapján
+  const sides = document.querySelectorAll(".face");
+
+  // Először eltávolítjuk a zöld színt minden oldalról
+  sides.forEach((side) => side.classList.remove("green-side"));
+
+  // A currentPosition-nek megfelelő oldalra tesszük a zöld színt
+  if (currentPosition === "Front-position") {
+    document.getElementById("face-front").classList.add("green-side");
+  } else if (currentPosition === "Back-position") {
+    document.getElementById("face-back").classList.add("green-side");
+  } else if (currentPosition === "Right-position") {
+    document.getElementById("face-right").classList.add("green-side");
+  } else if (currentPosition === "Left-position") {
+    document.getElementById("face-left").classList.add("green-side");
+  } else if (currentPosition === "Top-position") {
+    document.getElementById("face-top").classList.add("green-side");
+  } else if (currentPosition === "Bottom-position") {
+    document.getElementById("face-bottom").classList.add("green-side");
+  }
+}
+
+// Kocka frissítése a forgatási értékek alapján
+function updateCubeTransform() {
+  document.querySelector(
+    ".cube"
+  ).style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
 }
 
 // Pozíció ellenőrzése a felhasználó választása alapján
@@ -171,7 +281,7 @@ document.getElementById("toggle-switch").addEventListener("change", (event) => {
 });
 
 // Kép elrejtése alapértelmezetten
-document.getElementById("current-image").style.opacity = "1";
+
 createPositionButtons(); // Gombok létrehozása
 
 // Információs ikon esemény kezelése
@@ -189,3 +299,36 @@ document.getElementById("info-icon").addEventListener("click", () => {
 document.getElementById("close-rules").addEventListener("click", () => {
   document.getElementById("rules-container").style.display = "none"; // Bezárjuk a szabálykönyvet
 });
+
+let rotateX = -20; // Kezdő X tengely forgatás
+let rotateY = 70; // Kezdő Y tengely forgatás
+let rotateZ = 0; // Kezdő Z tengely forgatás (0 fokból indul)
+/*
+document.getElementById("rotateY").addEventListener("click", () => {
+  rotateY += 90; // Y tengelyen forgatás 90 fokkal
+  updateCubeTransform();
+});
+
+document.getElementById("rotateY-back").addEventListener("click", () => {
+  rotateY -= 90; // Y tengelyen forgatás visszafelé 90 fokkal
+  updateCubeTransform();
+});
+
+document.getElementById("rotateZ").addEventListener("click", () => {
+  rotateZ += 90; // Z tengelyen forgatás 90 fokkal
+  updateCubeTransform();
+});
+
+document.getElementById("rotateZ-back").addEventListener("click", () => {
+  rotateZ -= 90; // Z tengelyen forgatás visszafelé 90 fokkal
+  updateCubeTransform();
+});
+*/
+
+function updateCubeTransform() {
+  // Kocka transformációjának frissítése
+  const cube = document.querySelector(".cube");
+
+  // Kocka elforgatása
+  cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+}

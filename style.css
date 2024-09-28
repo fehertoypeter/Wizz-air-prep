@@ -25,15 +25,17 @@ img {
   height: auto;
   border-radius: 10px;
   margin-bottom: 20px;
-  opacity: 1;
 }
-
+#current-image {
+  opacity: 0;
+}
 #rules-image {
   opacity: 1;
   position: absolute;
   left: 20px;
   margin-top: 30px;
   transition: 0.2s;
+  z-index: 2;
 }
 
 #position-buttons {
@@ -184,4 +186,70 @@ span.toggle-label {
 
 .close-button:hover {
   background-color: #e53935; /* Sötétebb piros hover állapot */
+}
+
+.cube-container {
+  perspective: 600px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  background-color: #ffffff;
+  /* margin-top: 50px; */
+  padding-top: 50px;
+  margin-top: -324px;
+  margin-bottom: 98px;
+  z-index: 1;
+  /* Árnyék hozzáadása */
+}
+
+.cube {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(70deg) rotateZ(0deg);
+  transition: transform 0.2s ease-in-out;
+}
+
+.face {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
+  border: 2px solid black;
+  box-sizing: border-box;
+}
+
+.right {
+  transform: rotateY(0deg) translateZ(75px);
+}
+
+.left {
+  transform: rotateY(180deg) translateZ(75px);
+}
+
+.front {
+  transform: rotateY(-90deg) translateZ(75px);
+}
+
+.back {
+  transform: rotateY(90deg) translateZ(75px);
+}
+
+.top {
+  transform: rotateX(90deg) translateZ(75px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(75px);
+}
+
+.green-side {
+  background-color: rgb(
+    76,
+    175,
+    80,
+    0.79
+  ) !important; /* Átlátszó zöld háttér */
 }

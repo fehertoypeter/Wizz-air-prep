@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
   <head>
-    <meta property="og:image" content="https://github.com/fehertoypeter/Wizz-air-prep/blob/main/img/Rules.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kép és Mozgás</title>
@@ -16,14 +15,14 @@
           <span class="slider round"></span>
         </label>
         <span class="toggle-label"> Cube </span>
-        <span class="info-icon" id="info-icon">i</span>
+        <span class="info-icon" id="info-icon">ℹ️</span>
         <!-- Információs ikon -->
       </div>
       <img id="rules-image" src="img/Rules.png" alt="Position Image" />
       <div id="rules-container" class="rules-container" style="display: none">
         <button id="close-rules" class="close-button">x</button>
         <!-- Bezáró gomb -->
-        <h3>Spatial Orientation III module.</h3>
+        <h2>Spatial Orientation III module.</h2>
         <p>
           In this module your task is to imagine the rotation of a cube. You'll
           be given a cube with one side marked (initial position) then you will
@@ -43,12 +42,38 @@
       </div>
 
       <img id="current-image" src="img/Main.png" alt="Position Image" />
+
+      <div class="cube-container">
+        <!-- Tengelyek -->
+        <div class="axis">
+          <div class="axis-line axis-x"></div>
+          <div class="axis-line axis-y"></div>
+          <div class="axis-line axis-z"></div>
+        </div>
+
+        <!-- A kocka elemei -->
+        <div class="cube">
+          <div class="face front" id="face-front"></div>
+          <div class="face back" id="face-back"></div>
+          <div class="face left" id="face-left"></div>
+          <div class="face right" id="face-right"></div>
+          <div class="face top" id="face-top"></div>
+          <div class="face bottom" id="face-bottom"></div>
+        </div>
+      </div>
+
       <div id="position-buttons">
         <!-- Itt lesznek a pozíció gombok -->
       </div>
       <button id="new-game">Új játék</button>
     </div>
-
+    <!--
+    <div class="controls">
+      <button id="rotateY">Left</button>
+      <button id="rotateY-back">Right</button>
+      <button id="rotateZ-back">Down</button>
+      <button id="rotateZ">Up</button>
+    </div> -->
     <script src="script.js"></script>
   </body>
 </html>
