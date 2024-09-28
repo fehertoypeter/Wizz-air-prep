@@ -30,7 +30,7 @@ img {
   opacity: 0;
 }
 #rules-image {
-  opacity: 1;
+  opacity: 0;
   position: absolute;
   left: 20px;
   margin-top: 30px;
