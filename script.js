@@ -108,7 +108,7 @@ document.getElementById("new-game").addEventListener("click", () => {
 function resetCubeFaces() {
   const faces = document.querySelectorAll(".cube .face");
   faces.forEach((face) => {
-    face.style.backgroundColor = "transparent"; // Visszaállítás átlátszóra
+    face.style.backgroundColor = "#ffffff36"; // Visszaállítás fehér átlátszóra
   });
 }
 
@@ -254,7 +254,7 @@ function checkPosition(selectedPosition) {
   buttons.forEach((button) => {
     if (button.innerText === selectedPosition.replace("-position", "")) {
       if (selectedPosition === currentPosition) {
-        button.style.backgroundColor = "#4caf50"; // Helyes válasz
+        button.style.backgroundColor = "#CDDA32"; // Helyes válasz
       } else {
         button.style.backgroundColor = "#f44336"; // Helytelen válasz
       }
@@ -266,7 +266,7 @@ function checkPosition(selectedPosition) {
 function resetButtonColors() {
   const buttons = document.querySelectorAll("#position-buttons button");
   buttons.forEach((button) => {
-    button.style.backgroundColor = "#e0e0e0"; // Alapértelmezett szín
+    button.style.backgroundColor = "white"; // Alapértelmezett szín
   });
 }
 
