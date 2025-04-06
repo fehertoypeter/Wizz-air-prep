@@ -18,7 +18,7 @@
 - After refreshing the page, everything displays correctly — both the question's collection status and the collection itself.
 
 ✅ **Expected behavior:**  
-It should work like before – collections and question status should update immediately on the frontend and persist locally. When starting a new test, the new collections should be visible, and questions should properly reflect their inclusion via icons.
+It should work like before – So basically everz change should be stored on frontend like before. Collections and question status should update immediately on the frontend and persist locally. When starting a new test, the new collections should be visible, and questions should properly reflect their inclusion via icons.
 
 ---
 
