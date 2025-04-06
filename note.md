@@ -25,7 +25,7 @@ It should work like before – So basically everz change should be stored on fro
 ## 💬 COMMENTS
 
 **Firebase structure requirement:**  
-All user comments should be stored in a **single document inside the `usersCommentsBank` collection**.  
+All user comments should be stored in a **single document inside the `usersCommentsBank` collection** like before in the local data.  
 Do **not** create individual documents for each question. Comment volume will likely remain small, so the 1MB document limit won’t be an issue.
 
 ### ❗ Issues:
@@ -33,14 +33,13 @@ Do **not** create individual documents for each question. Comment volume will li
 - When a comment is added, the icon below the question does not update to reflect that it has one.
 - Restarting a test doesn’t show the comment icon, though the comment tab displays the comment correctly.
 - After refreshing the browser and returning to the same question, the comment disappears.
-- If another user comments on the same question, it **overwrites** the previous comments for that question.
-- Public comments are saved correctly, **but cannot be edited or deleted** because the “…” menu does not appear.
+- If another user comments on the same question, it looks like **overwrites** the previous comments for that question (but in anz waz should change the firebase structure like mentioned before.
+- Public comments are saved, **but cannot be edited or deleted** because the “…” menu does not appear.
 - Reply, like, and dislike functionalities are missing.
 
-🚫 **Public comments dashboard is not working.**
+**Public comments dashboard is not working.** It doesnt loads the data as before. 
 
 ---
 
 ## 🧪 TEST RESULT SAVING
-
 - Currently not working — assumed to be not yet implemented.
