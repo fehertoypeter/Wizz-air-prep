@@ -6,7 +6,7 @@
 
 ---
 
-## 📁 COLLECTIONS
+## COLLECTIONS
 
 - Creating a new collection correctly adds it to Firebase instantly.
 - Adding or removing questions from it also updates in Firebase.
@@ -22,7 +22,7 @@ It should work like before – So basically everz change should be stored on fro
 
 ---
 
-## 💬 COMMENTS
+##  COMMENTS
 
 **Firebase structure requirement:**  
 All user comments should be stored in a **single document inside the `usersCommentsBank` collection** like before in the local data.  
@@ -41,5 +41,5 @@ Do **not** create individual documents for each question. Comment volume will li
 
 ---
 
-## 🧪 TEST RESULT SAVING
+##  TEST RESULT SAVING
 - Currently not working — assumed to be not yet implemented.
