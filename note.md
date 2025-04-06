@@ -1,9 +1,8 @@
-# 🛠️ Bug Report & Feature Notes
+##  PRIVATE NOTE
 
-## 🔒 PRIVATE NOTE
-
-- The test works well overall.
-- The only issue is that if I'm on the notes dashboard, open a note, and then either delete it or save it as empty, the entire interface disappears, including the view of the current question. Nothing is visible in the practice/notes section until the page is refreshed.
+- During test works well overall.
+### ❗ Issues:
+- If I'm on the notes dashboard, open a note, and then either delete it or save it as empty, the entire interface disappears, including the view of the current question. Nothing is visible in the practice/notes section until the page is refreshed.
 
 ---
 
